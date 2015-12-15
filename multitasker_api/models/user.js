@@ -3,8 +3,8 @@ var mongoose = require('mongoose'),
     debug = require('debug')('app:models');
 
 var userSchema = mongoose.Schema ({
-	name: String,
 	email: String,
+	name: String,
 	password: String,
 	tasks: [{type: Schema.Types.ObjectId, ref: 'Task'}]
 

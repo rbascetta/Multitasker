@@ -1,5 +1,3 @@
-***index.ejs***
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +7,11 @@
   <%- include('../partials/header', {subHeading: 'Welcome'}) %>
 
   <main>
-    <ul class="tasks">
+    <ul class="todos">
     </ul>
 
-    <h3>Create Task</h3>
-    <form id="newTask">
+    <h3>Create Todo</h3>
+    <form id="newTodo">
       <label for="task">Task:</label>
       <input type="text" name="task">
       <input type="submit">
@@ -24,12 +22,4 @@
   <%- include('../partials/scripts') %>
 </body>
 </html>
-
-
-***index.jade***
-
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+Status API Training Shop Blog About Pricing

@@ -6,6 +6,6 @@ var taskSchema = mongoose.Schema({
   completed: Boolean
 });
 
-var Todo = mongoose.model('Task', taskSchema);
+var Task = mongoose.model('Task', taskSchema);
 
 module.exports = Task;
