@@ -1,25 +1,37 @@
 // Require resource's model(s).
-var User = require("../models/user");
+var Task = require('../models/task');
 
-var show = function(req, res, next){
-  User.findById(req.params.id, function(error, user){
-    if (error) res.json({message: 'Could not find user because ' + error});
-    res.render('users/show', {user: req.user})
+var index = function(req, res) {
+  Task.find({}, function(err, records){
+      res.send(records);
   });
 };
 
-// create a new user
-var create = function (req, res, next) {
-  console.log({message: req.body});
-  User.create(req.body, function(err, user){
-    if (err) {
+var create = function(req, res) {
+  Task.create(req.body, function(err, record){
+    if(err) {
       res.send(err);
     }
-      res.json(user);
+    res.send(record);
   });
-}
+};
+
+var update = function(req, res) {
+  req.record.set(req.body)
+  req.record.save(function (err, record) {
+    res.send(record);
+  });
+};
+
+var destroy = function(req, res) {
+  req.record.remove(function (err, record) {
+    res.send(record);
+  });
+};
 
   module.exports = {
-  show: show,
-  create: create
-};
+  index: index,
+  create: create,
+  update: update,
+  destroy: destroy
+}

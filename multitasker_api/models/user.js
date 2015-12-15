@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     debug = require('debug')('app:models');
 
-var userSchema = new Schema ({
+var userSchema = mongoose.Schema ({
 	name: String,
 	email: String,
 	password: String,

@@ -1,0 +1,25 @@
+*,
+html,
+body {
+  box-sizing: border-box;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-size: 14px;
+  padding: 50px;
+}
+
+a { 
+  color: #00B7FF; 
+  text-decoration: none;
+}
+
+.checkbox {
+  color: black;
+}
+
+.small {
+  font-size: 0.6em
+}
+

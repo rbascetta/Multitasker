@@ -1,15 +1,11 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    debug = require('debug')('app:models');
+var mongoose = require('mongoose');
 
-var taskSchema = new Schema ({
-	title: String,
-	body: String,
+var taskSchema = mongoose.Schema({
+  task: String,
+  body: String,
+  completed: Boolean
+});
 
-})
-
-var Task = mongoose.model('Task', taskSchema);
+var Todo = mongoose.model('Task', taskSchema);
 
 module.exports = Task;
-
-
