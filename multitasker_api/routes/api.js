@@ -28,8 +28,9 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/users',  usersController.index);
-router.post('/users', usersController.create);
+router.get('/users',      usersController.index);
+router.get('/users/:id',  usersController.show);
+router.post('/users',     usersController.create);
 
 
 router.get('/tasks', function(req, res, next){

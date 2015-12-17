@@ -24,7 +24,7 @@ var create = function (req, res, next) {
   });
 }
 
-  module.exports = {
+module.exports = {
   show:   show,
   create: create,
   index:  index
