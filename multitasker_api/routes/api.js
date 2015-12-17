@@ -11,10 +11,8 @@ var mongoose = require('mongoose');
 // Require controllers.
 var usersController = require('../controllers/users');
 var tasksController = require('../controllers/tasks');
-// var tokenController = require('../controllers/token')(app, errorHandler);
 
-
-/* GET users listing. */
+// LIST ROUTES
 router.get('/', function(req, res, next) {
   res.json({
   	paths: [
@@ -28,20 +26,20 @@ router.get('/', function(req, res, next) {
   });
 });
 
+// AUTH
+require('../controllers/token')(router);
+
+// USER CRUD
 router.get('/users',      usersController.index);
 router.get('/users/:id',  usersController.show);
 router.post('/users',     usersController.create);
 
-
+// TASK CRUD
 router.get('/tasks', function(req, res, next){
   res.send('Task Page');
 });
-
 router.post('/tasks', tasksController.create);
 
-// // Post token
-
-// router.post('/token', tokenController);
 
 
 module.exports = router;

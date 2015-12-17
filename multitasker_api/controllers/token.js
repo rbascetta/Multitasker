@@ -1,12 +1,13 @@
 var jwt  = require('jsonwebtoken'),
-    User = require('../models/user');
+    User = require('../models/user'),
+    env  = require('../config/environment');
 
 // In order to simplify our process, we will handle the request
 // inline here, instead of passing to controller files.
-module.exports = function(app, errorHandler) {
+module.exports = function(router) {
 
   // User creation path:
-  app.post('/api/token',
+  router.post('/token',
 
     // validations
     checkCredentials,
@@ -21,9 +22,9 @@ module.exports = function(app, errorHandler) {
           name:  req.user.name,
           use:   'public_api'
         },
-        app.get('secret-key'),
+        env.SECRET_KEY,
         {
-          expiresIn: 90 // short, so we can test better
+          expiresIn: 100000000
         }
       );
 
@@ -71,6 +72,7 @@ module.exports = function(app, errorHandler) {
   }
 
   function validateCredentials(req, res, next) {
+    console.log(req.user, req.body)
     req.user.verifyPassword(req.body.password, function(err, valid) {
       if (!valid) {
         errorHandler(
@@ -82,5 +84,24 @@ module.exports = function(app, errorHandler) {
         next();
       }
     });
+  }
+
+  function errorHandler(code, message, req, res) {
+    var title = '';
+    var responseJson = {};
+
+    res.status(code);
+    switch(code) {
+      case 400: title = '400 Bad Request';  break;
+      case 401: title = '401 Unauthorized'; break;
+      case 403: title = '403 Forbidden';    break;
+      case 404: title = '404 Not Found';    break;
+      case 422: title = '422 Unprocessable Entity';
+    }
+
+    responseJson.response = title;
+    if (message && message.length > 0) responseJson.message = message;
+
+    res.json(responseJson);
   }
 };

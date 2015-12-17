@@ -1,8 +1,9 @@
 var _ = require('lodash');
 
 var localEnvVars = {
-  TITLE:      'multitasker',
-  SAFE_TITLE: 'multitasker'
+  TITLE:      'MultiTasker!',
+  SAFE_TITLE: 'multitasker',
+  SECRET_KEY: 'christmastree'
 };
 
 // Merge all environmental variables into one object.
