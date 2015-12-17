@@ -6,7 +6,7 @@ var index = function (req, res, next) {
     if (error) console.log(error);
     res.json(users);
   })
-}
+};
 
 var show = function(req, res, next){
   User.findById(req.params.id, function(error, user){
@@ -19,10 +19,8 @@ var show = function(req, res, next){
 var create = function (req, res, next) {
   console.log({message: req.body});
   User.create(req.body, function(err, user){
-    if (err) {
-      res.send(err);
-    }
-      res.json(user);
+    if (err) res.send(err);
+    res.json(user);
   });
 }
 

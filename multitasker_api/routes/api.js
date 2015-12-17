@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/users', usersController.index);
+router.get('/users',  usersController.index);
 router.post('/users', usersController.create);
 
 
