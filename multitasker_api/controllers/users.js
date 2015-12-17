@@ -1,10 +1,17 @@
 // Require resource's model(s).
 var User = require("../models/user");
 
+var index = function (req, res, next) {
+  User.find({}, function(error, users) {
+    if (error) console.log(error);
+    res.json(users);
+  })
+}
+
 var show = function(req, res, next){
   User.findById(req.params.id, function(error, user){
     if (error) res.json({message: 'Could not find user because ' + error});
-    res.render('users/show', {user: req.user})
+    res.json(user);
   });
 };
 
@@ -20,6 +27,7 @@ var create = function (req, res, next) {
 }
 
   module.exports = {
-  show: show,
-  create: create
+  show:   show,
+  create: create,
+  index:  index
 };
