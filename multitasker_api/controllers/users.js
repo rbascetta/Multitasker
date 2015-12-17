@@ -24,8 +24,13 @@ var create = function (req, res, next) {
   });
 }
 
+var showCurrentUser = function(req, res, next){
+  res.json(req.user);
+};
+
 module.exports = {
   show:   show,
   create: create,
-  index:  index
+  index:  index,
+  showCurrentUser: showCurrentUser
 };
