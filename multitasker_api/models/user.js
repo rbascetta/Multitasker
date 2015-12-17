@@ -5,16 +5,20 @@ var mongoose = require('mongoose'),
     mongoose.Promise = Promise;
 
 var taskSchema = mongoose.Schema({
-  title:     String,
   body:      String,
   completed: { type: Boolean, default: false }
+});
+
+var listSchema = mongoose.Schema({
+  title:     String,
+  tasks:     [taskSchema]
 });
 
 var userSchema = mongoose.Schema ({
 	email:    String,
 	name:     String,
 	password: String,
-	tasks:    [taskSchema]
+	lists:    [listSchema]
 });
 
 userSchema.plugin(require('mongoose-bcrypt'));

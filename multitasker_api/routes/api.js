@@ -35,6 +35,9 @@ require('../controllers/token')(router);
 router.get('/users',      usersController.index);
 router.get('/users/:id',  usersController.show);
 router.post('/users',     usersController.create);
+router.post('/login',     usersController.login);
+router.post('/lists',     tasksController.createList);
+router.post('/lists/:id/tasks',     tasksController.createTask);
 
 router.get('/me',
 	checkForToken, validateToken, loadCurrentUser,

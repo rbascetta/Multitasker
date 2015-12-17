@@ -1,3 +1,4 @@
+var User = require('../models/user');
 // Require resource's model(s).
 // var Task = require('../models/task');
 
@@ -12,6 +13,28 @@ var create = function(req, res) {
   req.user.save(function(err, user) {
     res.json({message: "Added new task.", user: user});
   });
+};
+
+var createList = function(req, res) {
+	User.findById(req.body.userId, function(err, user) {
+	  if (!user.lists) user.lists = [];
+	  user.lists.push(req.body);
+	  user.save(function(err, user) {
+	    res.json(user.lists.pop());
+	  });
+	});
+};
+
+var createTask = function(req, res) {
+	User.findById(req.body.userId, function(err, user) {
+		var list = user.lists.filter(function(l) {
+			return l._id.toString() === req.params.id;
+		})[0];
+	  list.tasks.push(req.body);
+	  user.save(function(err, user) {
+	    res.json(list.tasks.pop());
+	  });
+	});
 };
 
 // var update = function(req, res) {
@@ -29,7 +52,9 @@ var create = function(req, res) {
 
   module.exports = {
   // index: index,
-  create: create //,
+  create: create, //,
+  createList: createList, //,
+  createTask: createTask //,
   // update: update,
   // destroy: destroy
 }

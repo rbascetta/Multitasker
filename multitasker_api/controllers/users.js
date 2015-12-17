@@ -15,6 +15,13 @@ var show = function(req, res, next){
   });
 };
 
+var login = function(req, res, next){
+  User.findOne({email: req.body.email}, function(error, user){
+    if (error) res.json({message: 'Could not find user because ' + error});
+    res.json(user);
+  });
+};
+
 // create a new user
 var create = function (req, res, next) {
   console.log({message: req.body});
@@ -30,6 +37,7 @@ var showCurrentUser = function(req, res, next){
 
 module.exports = {
   show:   show,
+  login:   login,
   create: create,
   index:  index,
   showCurrentUser: showCurrentUser

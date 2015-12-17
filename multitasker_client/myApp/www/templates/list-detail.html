@@ -1,0 +1,20 @@
+<ion-view view-title="Tasks">
+  	<div class="bar bar-header bar-positive">
+	  	<h1 class="title">{{list.title}}</h1>
+  	</div>
+  <ion-content>
+  	<br><br><br>
+    <ion-list>
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="task in list.tasks" type="item-text-wrap">
+        <h3>{{task.body}}</h3>
+    
+      </ion-item>
+    </ion-list>
+	<br><br><br><br>
+	<input ng-model="newTask.body" placeholder="new task">
+  </ion-content>
+  	<div class="bar bar-footer bar-positive">
+	  	<button class="button" ng-click="addTask()">Add Task</button>
+  	</div>
+
+</ion-view>

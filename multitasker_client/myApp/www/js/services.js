@@ -1,5 +1,42 @@
 angular.module('starter.services', [])
 
+.constant('serverHost', 'http://localhost:3000')
+
+.factory('UserService', function($http, serverHost) {
+  var service = {};
+  var user = {};
+
+  service.login = function(email, password) {
+    $http.post(serverHost + '/api/login', {email: email, password: password})
+      .then(function(req) {
+        service.user = req.data;
+        if (!service.user.lists) service.user.lists = [];
+        console.log(user);
+      });
+  };
+
+  service.addList = function(listTitle) {
+    $http.post(serverHost + '/api/lists', {
+      userId: service.user._id,
+      title: listTitle,
+      tasks: []
+    }).then(function(res) {
+      service.user.lists.push(res.data);
+    })
+  };
+
+  service.addTask = function(list, body) {
+    $http.post(serverHost + '/api/lists/' + list._id + '/tasks', {
+      userId: service.user._id,
+      body: body
+    }).then(function(res) {
+      list.tasks.push(res.data);
+    })
+  };
+
+  return service;
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
