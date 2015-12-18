@@ -1,3 +1,13 @@
-body {
-	background-color: hot-pink;
+.list {
+	width: 200px;
+	margin: 0 auto;
+	padding-top: 50px;
+
+}
+
+.loginButton {
+	width: 93px;
+	margin-left: 560px;
+	padding-top: 10px;
+
 }

@@ -21,3 +21,16 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+.list {
+	width: 200px;
+	margin: 0 auto;
+	padding-top: 50px;
+
+}
+
+.loginButton {
+	width: 93px;
+	margin-left: 560px;
+	padding-top: 10px;
+
+}
